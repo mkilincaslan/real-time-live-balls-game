@@ -2,9 +2,13 @@ doctype html
 html
   head
     title= title
-    link(rel='stylesheet', href='/stylesheets/style.css')
+    block stylesheets
+      link(rel='stylesheet', href='/stylesheets/style.css')
+      link(href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css", rel="stylesheet")
   body
-    block content
+    div(ng-app='eat-me', ng-cloak)
+      block content
 
   block scripts
     script(src='/angular/angular.min.js')
+    script(src='/javascripts/main.js')
