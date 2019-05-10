@@ -5,6 +5,8 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const session = require('express-session');
 const passport = require('passport');
+const methodOverride = require("method-override");
+var MongoDBStore = require('./helpers/MongoDBStore')
 const dotenv = require('dotenv');
 dotenv.config();
 
@@ -24,6 +26,7 @@ const isAuthenticated = require('./middleware/isAuthenticated');
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
+app.use(methodOverride('_method'));
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -33,10 +36,11 @@ app.use(express.static(path.join(__dirname, 'bower_components')));
 
 // express session
 app.use(session({
+  store: MongoDBStore,
   secret: process.env.SESSION_SECRET_KEY,
-  resave: false,
+  resave: true,
   saveUninitialized: true,
-  cookie: { maxAge: 14*24*3600000 }
+  cookie: { maxAge: 14 * 24 * 3600000 },
 }));
 
 // passport.js

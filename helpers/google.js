@@ -10,8 +10,7 @@ passport.use(new GoogleStrategy({
     callbackURL: process.env.GOOGLE_LOGIN_CALLBACK_URL
 },
     ((accessToken, refreshToken, profile, done) => {
-        console.log(profile);
-
+        console.log(profile)
         User.findOrCreate({
             'googleId': profile.id
         }, {
@@ -19,6 +18,7 @@ passport.use(new GoogleStrategy({
             surname: profile.name.familyName,
             profilePhotoUrl: profile.photos[0].value
         }, (err, user) => {
+            console.log(err);
             return done(err, user);
         });
     })

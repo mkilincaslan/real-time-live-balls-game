@@ -5,7 +5,7 @@ append stylesheets
   link(rel='stylesheet', href='/semantic/dist/semantic.min.css')
 
 block content
-  div(ng-controller="gameController")
+  div(ng-controller="gameController", ng-init='init()')
     .ui.one.column.stackable.center.aligned.page.grid.margin-30
       .column.twelve.wide
         .ui.stacked.segment.gameArea
@@ -48,5 +48,4 @@ block content
 
 append scripts
   script(src='/socket.io/socket.io.js')
-  script(src='/javascripts/services/indexFactory.js')
   script(src='/javascripts/controller/gameController.js')
