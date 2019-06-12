@@ -10,7 +10,8 @@ passport.use(new GoogleStrategy({
     callbackURL: process.env.GOOGLE_LOGIN_CALLBACK_URL
 },
     ((accessToken, refreshToken, profile, done) => {
-        console.log(profile)
+        console.log(profile);
+
         User.findOrCreate({
             'googleId': profile.id
         }, {

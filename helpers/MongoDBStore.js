@@ -1,9 +1,9 @@
-const session = require('express-session')
-    , MongoDBStore = require('connect-mongodb-session')(session);
+const session = require('express-session');
+const MongoDBStore = require('connect-mongodb-session')(session);
 
 const store = new MongoDBStore({
-    uri: process.env.MONGODB_SESSION_URL,
-    collection: process.env.MONGODB_COLLECTION
+    uri: 'mongodb://localhost:27017/eat-me-sessions',
+    collection: 'eat-me'
 });
 
 // Catch errors

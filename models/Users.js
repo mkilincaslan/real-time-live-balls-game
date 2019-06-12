@@ -9,10 +9,12 @@ const userSchema = new Schema({
     },
     name: String,
     surname: String,
+    profilePhotoUrl: String,
     nickname: {
-        type: String
-    },
-    profilePhotoUrl: String
+        type: String,
+        required: false,
+        unique: true
+    }
 });
 
 userSchema.plugin(findOrCreate);

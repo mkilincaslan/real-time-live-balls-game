@@ -9,19 +9,32 @@ body{
 .gameArea{
     min-height:450px;
     position: relative;
+    width: 100%;
 }
 
 .circle {
-    width: 80px;
-    height: 80px;
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    border-radius: 50%; /* the magic */
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    color: black;
+    font-size: 18px;
+    font-weight: 700;
+    margin: 0 auto 40px;
+    position: absolute;
+    top: 100px
+}
+
+
+.food {
+    width: 20px;
+    height: 20px;
     line-height: 80px;
     border-radius: 50%; /* the magic */
     -moz-border-radius: 50%;
     -webkit-border-radius: 50%;
-    text-align: center;
-    color: white;
-    font-size: 14px;
-    font-weight: 700;
     margin: 0 auto 40px;
     position: absolute;
     top: 100px
@@ -35,6 +48,27 @@ body{
 }
 .red {
     background-color: #e74c3c;
+}
+.yellow{
+    background-color: #FFFF00;
+}
+.orange{
+    background-color: #FFA500;
+}
+.pink {
+    background-color: #FFC0CB;
+}
+.brown {
+    background-color: #8B4513;
+}
+.aqua {
+    background-color: #00FFFF;
+}
+.gray{
+    background-color: #A9A9A9;
+}
+.magenta{
+    background-color: #FF00FF;
 }
 
 .circle .relative{
