@@ -5,6 +5,13 @@ app.controller('gameController', ['$scope',  ($scope) => {
     $scope.players = {};
     $scope.foods = {};
 
+    function scroolMoving(){
+        setTimeout(() => {
+            const element = document.getElementById('chat-area');
+            element.scrollTop = element.scrollHeight;   
+        });
+    }
+
     socket.on('nicknameControl', data => {
         if(!data.nickname || data.nickname == ''){
             if(data.rejected){
@@ -58,7 +65,7 @@ app.controller('gameController', ['$scope',  ($scope) => {
         };
 
         $scope.messages.push(messageData);
-        delete $scope.players[data.id];
+        delete $scope.players[user.id];
         $scope.$apply();
     });
     socket.on('createFood', foods => {
@@ -73,6 +80,11 @@ app.controller('gameController', ['$scope',  ($scope) => {
         $('#' + data.socketId).animate({ 'left': data.x + 'px', 'top': data.y + 'px'}, 400, () => {
             animate = false;
         });
+    });
+    socket.on('newMessage', data => {
+        $scope.messages.push(data);
+        $scope.$apply();
+        scroolMoving();
     });
 
     let animate = false;
@@ -102,5 +114,9 @@ app.controller('gameController', ['$scope',  ($scope) => {
 
         $scope.messages.push(messageData);
         $scope.message = '';
+
+        socket.emit('newMessage', messageData);
+
+        scroolMoving();
     };
 }]);

@@ -92,6 +92,9 @@ io.on('connection', socket => {
         delete users[socket.id];
     });
     socket.emit('createFood', createFood());
+    socket.on('newMessage', data => {
+        socket.broadcast.emit('newMessage', data);
+    });
 
     function createFood(){
         let foods = {}
