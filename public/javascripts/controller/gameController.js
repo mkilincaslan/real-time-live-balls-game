@@ -5,11 +5,19 @@ app.controller('gameController', ['$scope',  ($scope) => {
     $scope.players = {};
     $scope.foods = {};
 
-    function scroolMoving(){
+    function scrollMoving(){
         setTimeout(() => {
             const element = document.getElementById('chat-area');
             element.scrollTop = element.scrollHeight;   
         });
+    }
+
+    function showBubbles(id, message){
+        $('#' + id).find('.message').show().html(message);
+
+        setTimeout(() => {
+            $('#' + id).find('.message').hide();
+        }, 2000);
     }
 
     socket.on('nicknameControl', data => {
@@ -53,6 +61,7 @@ app.controller('gameController', ['$scope',  ($scope) => {
 
         $scope.messages.push(messageData);
         $scope.players[data.id] = data;
+        scrollMoving();
         $scope.$apply();
     });
     socket.on('userDisconnected', user =>{
@@ -66,6 +75,7 @@ app.controller('gameController', ['$scope',  ($scope) => {
 
         $scope.messages.push(messageData);
         delete $scope.players[user.id];
+        scrollMoving();
         $scope.$apply();
     });
     socket.on('createFood', foods => {
@@ -84,7 +94,9 @@ app.controller('gameController', ['$scope',  ($scope) => {
     socket.on('newMessage', data => {
         $scope.messages.push(data);
         $scope.$apply();
-        scroolMoving();
+
+        showBubbles(data.socketId, data.text);
+        scrollMoving();
     });
 
     let animate = false;
@@ -117,6 +129,7 @@ app.controller('gameController', ['$scope',  ($scope) => {
 
         socket.emit('newMessage', messageData);
 
-        scroolMoving();
+        showBubbles(socket.id, message);
+        scrollMoving();
     };
 }]);

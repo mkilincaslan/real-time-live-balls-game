@@ -93,7 +93,8 @@ io.on('connection', socket => {
     });
     socket.emit('createFood', createFood());
     socket.on('newMessage', data => {
-        socket.broadcast.emit('newMessage', data);
+        let messageData = Object.assign({ socketId: socket.id }, data);
+        socket.broadcast.emit('newMessage', messageData);
     });
 
     function createFood(){

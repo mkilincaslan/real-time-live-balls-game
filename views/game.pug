@@ -17,7 +17,7 @@ block content
           )
             .relative
               span.name {{ player.nickname }}
-              //.message
+              .message
           .food(
             ng-repeat='food in foods',
             ng-style="{ 'left': food.position.x + 'px', 'top': food.position.y + 'px' }",
