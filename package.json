@@ -1,6 +1,7 @@
 {
   "name": "real-time-live-balls-game",
   "version": "0.0.0",
+  "description": "Real Time Live Balls Game With NodeJS + Angular + SocketIO by Mesut KILINCASLAN.",
   "private": true,
   "scripts": {
     "start:dev": "nodemon ./bin/www",
