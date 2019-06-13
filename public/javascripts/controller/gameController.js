@@ -1,6 +1,6 @@
 app.controller('gameController', ['$scope',  ($scope) => {
 
-    const socket = io.connect("http://localhost:3000");
+    const socket = io.connect(process.env.socketURL);
     $scope.messages = [];
     $scope.players = {};
     $scope.foods = {};
